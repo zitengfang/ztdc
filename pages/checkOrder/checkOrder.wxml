@@ -1,0 +1,38 @@
+<view class="main">
+  <view class="top-bar"></view>
+
+  <view class="table-num white-bg">
+      <picker bindchange="bindPickerChange" value="{{tableIdx}}" range="{{tableNum}}">
+        <view class="table-num__section">
+          <view class="table-num__picker">
+            请选择桌号：{{tableNum[tableIdx]}} 号
+          </view>
+          <view class="table-num__icon">></view>
+        </view>
+      </picker>
+  </view>
+
+  <view class="order-details white-bg">
+    <text>订单详情</text>
+    <view class="order-details__foodItem" wx:for="{{orderLists}}" wx:for-item="orderList" wx:for-index="key">
+      <view class="order-details__foodName">{{orderList.foodName}}</view>
+      <view class="order-details__foodQuantity">x {{orderList.foodQuantity}}</view>
+      <view class="order-details__foodPrice">￥{{orderList.foodPrice}}</view>
+    </view>
+
+    <view class="order-details__discountItems" wx:for="{{discountItems}}" wx:for-item="item" wx:for-index="key">
+      <view class="order-details__discountName">{{item.key}}</view>
+      <view class="order-details__discountPrice">-￥{{item.data}}</view>
+    </view>
+  </view>
+
+  <view class="order-mark white-bg">
+    <text class="order-mark__title">订单备注</text>
+    <textarea class="order-mark__textarea" placeholder="口味、偏好等（20字以内）" />
+  </view>
+</view>
+
+<view class="footer">
+  <view class="footer__totalPrice">总价:￥{{orderPrice}}</view>
+  <navigator class="footer__confirm">确认下单</navigator>
+</view>
